@@ -27,7 +27,7 @@ test_script:
   - ps: dotnet test test\R4Mvc.Test\R4Mvc.Test.csproj    
 
 after_test:
-  - ps: nuget pack src\r4mvc -version "$env:nugetVersion"
+  - ps: msbuild src\R4Mvc /t:pack /p:version=$env:nugetVersion
 
 artifacts:
   - path: '**\*.nupkg'
