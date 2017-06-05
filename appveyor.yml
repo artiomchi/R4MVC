@@ -1,0 +1,14 @@
+version: '{build}'
+image: Visual Studio 2017
+init:
+- cmd: nuget.exe sources add -name aspnetvnext -source https://www.myget.org/F/aspnetvnext/api/v2
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+test_script:
+- cmd: >-
+    cd test\R4Mvc.Test
+
+
+    dotnet test
