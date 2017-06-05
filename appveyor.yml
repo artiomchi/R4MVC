@@ -1,14 +1,32 @@
-version: '{build}'
+version: 1.0.0.{build}
+
+environment:
+  packageVersion: 1.0.0-alpha1
+
 image: Visual Studio 2017
+
 init:
-- cmd: nuget.exe sources add -name aspnetvnext -source https://www.myget.org/F/aspnetvnext/api/v2
+- ps: nuget.exe sources add -name aspnetvnext -source https://www.myget.org/F/aspnetvnext/api/v2
+- ps: $env:nugetVersion = "$env:appveyor_build_version-ci-$env:appveyor_build_number"
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '$(nugetVersion)'
+
 before_build:
-- cmd: nuget restore
+  - ps: nuget restore
+
 build:
   verbosity: minimal
+
 test_script:
-- cmd: >-
-    cd test\R4Mvc.Test
+  - ps: dotnet test test\R4Mvc.Test\R4Mvc.Test.csproj    
 
+after_build:
+  - ps: nuget pack src\r4mvc -version "$env:nugetVersion"
 
-    dotnet test
+artifacts:
+  - path: '**\*.nupkg'
