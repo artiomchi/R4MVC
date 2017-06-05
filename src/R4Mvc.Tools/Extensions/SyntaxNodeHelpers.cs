@@ -14,11 +14,11 @@ namespace R4Mvc.Tools.Extensions
     /// </summary>
     public static class SyntaxNodeHelpers
     {
-        public static bool InheritsFrom<T>(this ITypeSymbol symbol)
+        public static bool InheritsFrom(this ITypeSymbol symbol, string classFullName)
         {
             while (true)
             {
-                if (symbol.TypeKind == TypeKind.Class && symbol.ToString() == typeof(T).FullName)
+                if (symbol.TypeKind == TypeKind.Class && symbol.ToString() == classFullName)
                 {
                     return true;
                 }
@@ -30,11 +30,6 @@ namespace R4Mvc.Tools.Extensions
                 break;
             }
             return false;
-        }
-
-        public static bool InheritsFrom<T>(this IMethodSymbol symbol)
-        {
-            return symbol.ContainingType.InheritsFrom<T>();
         }
 
         public static TypeSyntax PredefinedStringType()

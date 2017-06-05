@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -21,16 +20,16 @@ namespace R4Mvc.Tools.Services
         public string GetControllerArea(INamedTypeSymbol controllerSymbol)
         {
             var areaAttribute = controllerSymbol.GetAttributes()
-                .Where(a => a.AttributeClass.InheritsFrom<AreaAttribute>())
+                .Where(a => a.AttributeClass.InheritsFrom(Constants.AreaAttributeFullName))
                 .FirstOrDefault();
             if (areaAttribute == null)
                 return string.Empty;
 
-            if (areaAttribute.AttributeClass.ToDisplayString() == typeof(AreaAttribute).FullName)
+            if (areaAttribute.AttributeClass.ToDisplayString() == Constants.AreaAttributeFullName)
                 return areaAttribute.ConstructorArguments[0].Value?.ToString();
 
             // parse the constructor to get the area name from derived types
-            if (areaAttribute.AttributeClass.BaseType.ToDisplayString() == typeof(AreaAttribute).FullName)
+            if (areaAttribute.AttributeClass.BaseType.ToDisplayString() == Constants.AreaAttributeFullName)
             {
                 // direct descendant. Reading the area name from the constructor
                 var constructorInit = areaAttribute.AttributeConstructor.DeclaringSyntaxReferences

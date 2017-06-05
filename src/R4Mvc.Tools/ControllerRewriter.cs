@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using R4Mvc.Tools.Extensions;
@@ -30,7 +29,7 @@ namespace R4Mvc.Tools
             // grab the symbol first and pass to other visitors first
             var symbol = _compiler.GetSemanticModel(node.SyntaxTree).GetDeclaredSymbol(node);
             var newNode = (ClassDeclarationSyntax)base.VisitClassDeclaration(node);
-            if (symbol.InheritsFrom<Controller>() && !IsForcedExclusion(symbol))
+            if (symbol.InheritsFrom(Constants.ControllerClassFullName) && !IsForcedExclusion(symbol))
             {
                 // hold a list of all controller classes to use later for the generator
                 _mvcControllerClassNodes.Add(node);
@@ -48,7 +47,7 @@ namespace R4Mvc.Tools
         private static bool IsForcedExclusion(INamedTypeSymbol symbol)
         {
             // need to fully qualify attribute type for reliable matching
-            var r4attribute = symbol.GetAttributes().ToArray().FirstOrDefault(x => x.AttributeClass.ToDisplayString() == typeof(R4MvcExcludeAttribute).FullName);
+            var r4attribute = symbol.GetAttributes().ToArray().FirstOrDefault(x => x.AttributeClass.ToDisplayString() == Constants.R4MvcExcludeAttributeFullName);
             return r4attribute != null;
         }
 
@@ -60,7 +59,7 @@ namespace R4Mvc.Tools
             if (node.Modifiers.Any(SyntaxKind.PublicKeyword) && !node.Modifiers.Any(SyntaxKind.VirtualKeyword))
             {
                 var symbol = _compiler.GetSemanticModel(node.SyntaxTree).GetDeclaredSymbol(node);
-                if (symbol.InheritsFrom<Controller>())
+                if (symbol.ContainingType.InheritsFrom(Constants.ControllerClassFullName))
                 {
                     Debug.WriteLine(
                         "R4MVC - Marking controller method {0} as virtual from {1}",

@@ -11,6 +11,10 @@
         internal const string ActionResultClass = ProjectName + "_Microsoft_AspNetCore_Mvc_ActionResult";
         internal const string JsonResultClass = ProjectName + "_Microsoft_AspNetCore_Mvc_JsonResult";
 
+        internal const string ControllerClassFullName = "Microsoft.AspNetCore.Mvc.Controller";
+        internal const string AreaAttributeFullName = "Microsoft.AspNetCore.Mvc.AreaAttribute";
+        internal const string R4MvcExcludeAttributeFullName = "Microsoft.AspNetCore.Mvc.AreaAttribute";
+
         internal static class ConfigKeys
         {
             internal const string HelpersPrefix = "helpersPrefix";
