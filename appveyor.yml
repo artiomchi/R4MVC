@@ -6,9 +6,9 @@ environment:
 image: Visual Studio 2017
 
 init:
-- ps: nuget.exe sources add -name aspnetvnext -source https://www.myget.org/F/aspnetvnext/api/v2
-- ps: $env:nugetVersion = "$env:packageVersion-ci-$env:appveyor_build_number"
-- ps: Write-Host "nugetVersion:" $env:nugetVersion
+  - ps: nuget.exe sources add -name aspnetvnext -source https://www.myget.org/F/aspnetvnext/api/v2
+  - ps: $env:nugetVersion = "$env:packageVersion-ci-$env:appveyor_build_number"
+  - ps: Write-Host "nugetVersion:" $env:nugetVersion
 
 assembly_info:
   patch: true
@@ -27,7 +27,7 @@ test_script:
   - ps: dotnet test test\R4Mvc.Test\R4Mvc.Test.csproj    
 
 after_test:
-  - ps: msbuild src\R4Mvc /t:pack /p:version=$env:nugetVersion
+  - ps: msbuild src\R4Mvc /t:pack /p:PackageVersion=$env:nugetVersion
 
 artifacts:
   - path: '**\*.nupkg'
