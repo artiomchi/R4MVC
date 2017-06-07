@@ -29,21 +29,19 @@ namespace R4Mvc
         [GeneratedCode("R4Mvc", "1.0")]
         public static Dummy Instance = new Dummy();
     }
-
-    public class AdminClass
-    {
-        public readonly R4MvcHostApp.Areas.Admin.Controllers.UsersController Users = new R4MvcHostApp.Areas.Admin.Controllers.R4MVC_UsersController();
-    }
 }
 
 [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
-    static readonly AdminClass s_Admin = new AdminClass();
-    public static AdminClass Admin => s_Admin;
     public static readonly R4MvcHostApp.Controllers.AccountController Account = new R4MvcHostApp.Controllers.R4MVC_AccountController();
+    public static readonly R4MvcHostApp.Controllers.AdminController Admin = new R4MvcHostApp.Controllers.R4MVC_AdminController();
     public static readonly R4MvcHostApp.Controllers.HomeController Home = new R4MvcHostApp.Controllers.R4MVC_HomeController();
     public static readonly R4MvcHostApp.Controllers.ManageController Manage = new R4MvcHostApp.Controllers.R4MVC_ManageController();
+    public static class AdminArea
+    {
+        public static readonly R4MvcHostApp.Areas.Admin.Controllers.UsersController Users = new R4MvcHostApp.Areas.Admin.Controllers.R4MVC_UsersController();
+    }
 }
 
 internal partial class R4Mvc_Microsoft_AspNetCore_Mvc_ActionResult : ActionResult, IR4MvcActionResult

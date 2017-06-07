@@ -13,17 +13,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using R4Mvc;
 
-namespace R4MvcHostApp.Areas.Admin.Controllers
+namespace R4MvcHostApp.Controllers
 {
-    public partial class UsersController
+    public partial class AdminController
     {
         [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
-        public UsersController()
+        public AdminController()
         {
         }
 
         [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
-        protected UsersController(Dummy d)
+        protected AdminController(Dummy d)
         {
         }
 
@@ -54,13 +54,13 @@ namespace R4MvcHostApp.Areas.Admin.Controllers
         }
 
         [GeneratedCode("R4Mvc", "1.0")]
-        public UsersController Actions => MVC.AdminArea.Users;
+        public AdminController Actions => MVC.Admin;
         [GeneratedCode("R4Mvc", "1.0")]
-        public readonly string Area = "Admin";
+        public readonly string Area = "";
         [GeneratedCode("R4Mvc", "1.0")]
-        public readonly string Name = "Users";
+        public readonly string Name = "Admin";
         [GeneratedCode("R4Mvc", "1.0")]
-        public const string NameConst = "Users";
+        public const string NameConst = "Admin";
         [GeneratedCode("R4Mvc", "1.0")]
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("R4Mvc", "1.0")]
@@ -68,13 +68,13 @@ namespace R4MvcHostApp.Areas.Admin.Controllers
         [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
         public class ActionNamesClass
         {
-            public readonly string Index = "Index";
+            public readonly string Test = "Test";
         }
 
         [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
-            public const string Index = "Index";
+            public const string Test = "Test";
         }
 
         [GeneratedCode("R4Mvc", "1.0")]
@@ -88,27 +88,24 @@ namespace R4MvcHostApp.Areas.Admin.Controllers
             static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
             public class _ViewNamesClass
             {
-                public readonly string Index = "Index";
             }
-
-            public string Index = "~/Areas/Admin/Views/Users/Index.cshtml";
         }
     }
 
     [GeneratedCode("R4Mvc", "1.0"), DebuggerNonUserCode]
-    public partial class R4MVC_UsersController : R4MvcHostApp.Areas.Admin.Controllers.UsersController
+    public partial class R4MVC_AdminController : R4MvcHostApp.Controllers.AdminController
     {
-        public R4MVC_UsersController(): base (Dummy.Instance)
+        public R4MVC_AdminController(): base (Dummy.Instance)
         {
         }
 
         [NonAction]
-        partial void IndexOverride(R4Mvc_Microsoft_AspNetCore_Mvc_ActionResult callInfo);
+        partial void TestOverride(R4Mvc_Microsoft_AspNetCore_Mvc_ActionResult callInfo);
         [NonAction]
-        public override Microsoft.AspNetCore.Mvc.IActionResult Index()
+        public override void Test()
         {
-            var callInfo = new R4Mvc_Microsoft_AspNetCore_Mvc_ActionResult(Area, Name, ActionNames.Index);
-            IndexOverride(callInfo);
+            var callInfo = new R4Mvc_Microsoft_AspNetCore_Mvc_ActionResult(Area, Name, ActionNames.Test);
+            TestOverride(callInfo);
             return callInfo;
         }
     }
