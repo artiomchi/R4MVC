@@ -180,6 +180,7 @@ namespace R4MvcHostApp.Controllers
                 public readonly string ResetPassword = "ResetPassword";
                 public readonly string ResetPasswordConfirmation = "ResetPasswordConfirmation";
                 public readonly string SendCode = "SendCode";
+                public readonly string SignedOut = "SignedOut";
                 public readonly string VerifyCode = "VerifyCode";
             }
 
@@ -195,6 +196,7 @@ namespace R4MvcHostApp.Controllers
             public string ResetPassword = "~/Views/Account/ResetPassword.cshtml";
             public string ResetPasswordConfirmation = "~/Views/Account/ResetPasswordConfirmation.cshtml";
             public string SendCode = "~/Views/Account/SendCode.cshtml";
+            public string SignedOut = "~/Views/Account/SignedOut.cshtml";
             public string VerifyCode = "~/Views/Account/VerifyCode.cshtml";
         }
 

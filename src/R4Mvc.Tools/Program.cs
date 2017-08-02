@@ -44,6 +44,8 @@ namespace R4Mvc.Tools
 
         public async Task Run(string projectPath, IServiceProvider serviceProvider)
         {
+            Environment.SetEnvironmentVariable("MSBuildSdksPath", @"C:\Program Files\dotnet\sdk\2.0.0-preview2-006497\Sdks", EnvironmentVariableTarget.Process);
+
             var workspace = MSBuildWorkspace.Create();
             var generator = serviceProvider.GetService<R4MvcGenerator>();
             var settings = serviceProvider.GetService<IOptions<Services.Settings>>().Value;
